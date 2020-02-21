@@ -18,10 +18,10 @@ function addProjects(project) {
 };
 
 function getTasks() {
-    return db('projects')
-        .join('tasks', 'tasks.project_id', 'projects.id')
-        .select('tasks.name', 'tasks.description','projects.name', 'projects.description')
-        .where('project_id', 1);
+    return db('tasks')
+        .join('projects', 'projects.id', '=', 'tasks.project_id')
+        .select('projects.name as projectName', 'projects.description as projectDesc', 'tasks.name', 'tasks.description', 'tasks.id');
+                
 };
 
 function addTasks(task) {
